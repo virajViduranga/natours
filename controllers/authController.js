@@ -22,7 +22,8 @@ const CreateSendToken = (user, statusCode, res) => {
         httpOnly : true
     }
 
-    if(process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+    // if(process.env.NODE_ENV === 'production') cookieOptions.secure = true;
+    if(req.secure || req.headers['x-forwarded-proto'] === 'https') cookieOptions.secure = true; //deploy karata psse uda code ek wda krnne na
 
     res.cookie('jwt', token ,cookieOptions );
 

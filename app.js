@@ -5,11 +5,12 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const path = require('path');
 const cookieParser = require('cookie-parser');
-
+const compression = require('compression');
 
 
 
 const app = express();
+app.enable('trust proxy');
 const toursRouter = require('./routes/toursRoutes');
 const usersRouter = require('./routes/usersRoutes');
 const reviewsRoute = require('./routes/reviewRoute');
@@ -121,6 +122,7 @@ if (process.env.NODE_ENV === 'production') {
 //   })
 // );
 
+app.use(compression());
 app.use('/api' , limiter);
 
 

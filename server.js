@@ -41,4 +41,12 @@ const port = process.env.PORT;
         
     });
 
+    process.on('SIGTERM', () =>{
+        console.log('SIGTERM RECEIVED! Shutting Down...');
+        server.close(() =>{
+            console.log('Process Terminated!');
+        });
+
+    });
+
    
